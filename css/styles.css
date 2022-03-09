@@ -1,0 +1,152 @@
+@font-face {
+  src: url("https://i.smnarnold.com/jaws/fonts/digital.woff2") format("woff2");
+  font-family: "Digital";
+}
+@font-face {
+  src: url("https://i.smnarnold.com/jaws/fonts/amity-jack.woff2") format("woff2");
+  font-family: "Amity Jack";
+}
+:root {
+  --red: #f04023;
+  --light-blue: #00b4db;
+  --blue: #0083b0;
+  --grey: #4b5f59;
+  --grey-light: #6f7f7a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+html {
+  background: linear-gradient(to right, var(--light-blue), var(--blue));
+}
+
+.btn {
+  background-color: var(--grey);
+  border: 0;
+  color: white;
+  font-weight: bold;
+  line-height: 0.8;
+  padding: 0.66em;
+}
+.btn:hover {
+  background-color: var(--grey-light);
+}
+
+.game {
+  position: relative;
+  height: 100%;
+}
+
+.popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: #fff;
+  width: 90%;
+  max-width: 400px;
+  font-size: 18px;
+  line-height: 1.5;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  box-shadow: 0 0 50px var(--blue);
+  transition: opacity 0.3s, transform 0.3s;
+}
+.popup__title {
+  font-family: "Amity Jack";
+  color: var(--red);
+  margin-top: 10px 0;
+  text-align: center;
+}
+.popup__btns {
+  display: flex;
+  justify-content: center;
+}
+.popup__footer {
+  display: block;
+  width: 100%;
+}
+.popup--intro {
+  opacity: 1;
+}
+.is-started .popup--intro {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -52%);
+}
+.popup--outro {
+  text-align: center;
+  transform: translate(-50%, -52%);
+  opacity: 0;
+  pointer-events: none;
+}
+.is-dead .popup--outro {
+  opacity: 1;
+  pointer-events: unset;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s 0.8s, transform 0.3s 0.8s;
+}
+
+.board {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.jaws {
+  position: absolute;
+}
+.jaws .sprite {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://i.smnarnold.com/jaws/imgs/jaws-sprite-sheet.png");
+  background-size: 100% auto;
+  background-position: 0 0;
+  transform: scaleX(1);
+}
+.is-dead .jaws .sprite {
+  -webkit-animation: attack 0.8s steps(5);
+          animation: attack 0.8s steps(5);
+}
+.jaws.flip .sprite {
+  transform: scaleX(-1);
+}
+
+.timer {
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  font-family: "Digital";
+  font-size: 8vmin;
+  transform: translateX(-50%);
+  pointer-events: none;
+  color: #dcf763;
+}
+
+@-webkit-keyframes attack {
+  0%, 100% {
+    background-position: 0 0%;
+  }
+  50% {
+    background-position: 0 100%;
+  }
+}
+
+@keyframes attack {
+  0%, 100% {
+    background-position: 0 0%;
+  }
+  50% {
+    background-position: 0 100%;
+  }
+}
